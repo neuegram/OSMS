@@ -37,4 +37,10 @@ Rather than track user history through a chain of signed hashes as described in 
 To login, an OTR conversation must be established between the client and the server. In order to establish the converstation, a GET request must first be made to `/pk` to retrieve the latest public key for the server. Beginning with a query message, the conversation can be started by POSTing to `/create_session` until the handshake is complete and a secure OTR conversation has been established. The client public key for the conversation must match the one stored on the server.
 #### Destroy Session
 To logout, the established OTR conversation must be ended by POSTing a termination message to `/terminate_session`.
-
+### Sending A Message
+#### Get Message Key
+A sender can request a recipient's latest public key (among other information) with a GET to `/user/{username}`.
+#### Get Proof of Work Parameters
+Proof of work is still under consideration. Currently, cryptocurrency mining is being considered of as a way of proof of work that generates revenue for the service (and possibly for other users). Inspired by Tidbit and Jeremy Rubin.
+#### Send Message
+A message can be sent / conversation can be started with a request to `send/{recipient_username}`. In order for messages to be sent that are not a part of the OTR AKE it will be required that both the sender and recipient send a request to `send/recipient/auth`.
